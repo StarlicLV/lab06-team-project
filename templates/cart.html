@@ -10,14 +10,14 @@
     {% if messages %}
     <div class="mb-6 space-y-2">
         {% for message in messages %}
-        <div class="rounded-lg bg-amber-100 px-4 py-3 text-amber-900 dark:bg-gray-800 dark:text-amber-200">{{ message }}</div>
+        <div class="rounded-lg bg-amber-100 px-4 py-3 text-amber-900 dark:bg-espresso/80 dark:text-amber-200">{{ message }}</div>
         {% endfor %}
     </div>
     {% endif %}
 {% endwith %}
 
 {% if items %}
-<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-gray-800">
+<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-espresso/80">
     <table class="w-full text-left">
         <thead>
             <tr class="border-b border-gray-200 dark:border-gray-700">
@@ -69,7 +69,7 @@
 
 <div class="mt-6 flex flex-wrap gap-3">
     <a href="{{ menu_url }}"
-       class="rounded-lg border border-amber-700 px-5 py-2 font-semibold text-amber-800 transition-colors hover:bg-amber-100 dark:border-amber-300 dark:text-amber-200 dark:hover:bg-gray-800">
+       class="rounded-lg border border-amber-700 px-5 py-2 font-semibold text-amber-800 transition-colors hover:bg-amber-100 dark:border-amber-300 dark:text-amber-200 dark:hover:bg-espresso/80">
         Продовжити вибір
     </a>
     <a href="{{ url_for('orders.checkout') }}"
@@ -78,7 +78,7 @@
     </a>
 </div>
 {% else %}
-<div class="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+<div class="rounded-lg bg-white p-6 shadow-md dark:bg-espresso/80">
     <p class="mb-4 text-lg">Ваш кошик порожній.</p>
     <a href="{{ menu_url }}" class="font-semibold text-amber-700 underline dark:text-amber-300">Перейти до меню</a>
 </div>

@@ -1,7 +1,7 @@
 {# Спільні шматки для адмінки замовлень: підменю та кольоровий бейдж статусу #}
 
 {% macro orders_subnav(active) %}
-<div class="mb-4 flex gap-4 border-b border-gray-300 pb-2 dark:border-gray-700">
+<div class="mb-4 flex gap-4 border-b border-gray-300 pb-2 dark:border-latte/15">
     {% for endpoint, label, key in [('orders.admin_orders', 'Замовлення', 'orders'), ('orders.admin_promo', 'Промокоди', 'promo')] %}
     <a href="{{ url_for(endpoint) }}"
        class="{{ 'font-bold underline' if active == key else 'hover:underline' }}">{{ label }}</a>

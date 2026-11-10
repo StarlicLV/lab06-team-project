@@ -6,10 +6,10 @@
 <h2 class="mb-4 text-2xl font-bold">Відгуки</h2>
 
 {% if feedback %}
-<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-gray-800">
+<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-espresso/80">
     <table class="w-full text-left">
         <thead>
-            <tr class="border-b border-gray-200 dark:border-gray-700">
+            <tr class="border-b border-gray-200 dark:border-latte/15">
                 <th class="p-3">Дата</th>
                 <th class="p-3">Ім’я</th>
                 <th class="p-3">Email</th>
@@ -19,7 +19,7 @@
         </thead>
         <tbody>
             {% for f in feedback %}
-            <tr class="border-b border-gray-100 align-top dark:border-gray-700">
+            <tr class="border-b border-gray-100 align-top dark:border-latte/15">
                 <td class="p-3 whitespace-nowrap">{{ f.created_at }}</td>
                 <td class="p-3">{{ f.name }}</td>
                 <td class="p-3">{{ f.email }}</td>

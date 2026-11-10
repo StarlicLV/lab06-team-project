@@ -10,7 +10,7 @@
 <form method="get" class="mb-4 flex flex-wrap items-center gap-2">
     <label for="status" class="font-semibold">Статус:</label>
     <select id="status" name="status" onchange="this.form.submit()"
-            class="rounded border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+            class="rounded border border-gray-300 bg-white px-3 py-2 dark:border-latte/20 dark:bg-choc/60">
         <option value="">Усі</option>
         {% for key, label in statuses.items() %}
         <option value="{{ key }}" {{ 'selected' if key == current_status }}>{{ label }}</option>
@@ -20,7 +20,7 @@
 </form>
 
 {% if orders %}
-<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-gray-800">
+<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-espresso/80">
     <table class="w-full text-left">
         <thead class="bg-amber-700 text-white">
             <tr>
@@ -34,9 +34,9 @@
         </thead>
         <tbody>
             {% for o in orders %}
-            <tr class="border-t border-gray-200 dark:border-gray-700">
+            <tr class="border-t border-gray-200 dark:border-latte/15">
                 <td class="p-3">{{ o.id }}</td>
-                <td class="p-3">{{ o.customer_name }}<div class="text-sm text-gray-500 dark:text-gray-400">{{ o.phone }}</div></td>
+                <td class="p-3">{{ o.customer_name }}<div class="text-sm text-gray-500 dark:text-latte/70">{{ o.phone }}</div></td>
                 <td class="p-3">{{ status_badge(o.status, statuses[o.status]) }}</td>
                 <td class="p-3 text-right">{{ '%.2f'|format(o.total) }} грн</td>
                 <td class="p-3">{{ o.created_at }}</td>
@@ -47,6 +47,6 @@
     </table>
 </div>
 {% else %}
-<p class="text-gray-600 dark:text-gray-300">Замовлень{{ ' з таким статусом' if current_status }} поки немає.</p>
+<p class="text-gray-600 dark:text-latte">Замовлень{{ ' з таким статусом' if current_status }} поки немає.</p>
 {% endif %}
 {% endblock %}

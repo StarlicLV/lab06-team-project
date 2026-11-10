@@ -6,7 +6,7 @@
 <h2 class="text-2xl font-bold mb-4">Клієнти</h2>
 
 {% if customers %}
-<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-gray-800">
+<div class="overflow-x-auto rounded-lg bg-white shadow-md dark:bg-espresso/80">
     <table class="w-full text-left">
         <thead class="bg-amber-700 text-white">
             <tr>
@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             {% for c in customers %}
-            <tr class="border-t border-gray-200 dark:border-gray-700">
+            <tr class="border-t border-gray-200 dark:border-latte/15">
                 <td class="p-3">{{ c.id }}</td>
                 <td class="p-3">{{ c.name }}</td>
                 <td class="p-3">{{ c.phone }}</td>
@@ -33,6 +33,6 @@
     </table>
 </div>
 {% else %}
-<p class="text-gray-600 dark:text-gray-300">Клієнтів поки немає.</p>
+<p class="text-gray-600 dark:text-latte">Клієнтів поки немає.</p>
 {% endif %}
 {% endblock %}

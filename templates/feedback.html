@@ -13,32 +13,32 @@
     {% if messages %}
     <div class="mb-6 max-w-xl space-y-2">
         {% for message in messages %}
-        <div class="rounded-lg bg-amber-100 px-4 py-3 text-amber-900 dark:bg-gray-800 dark:text-amber-200">{{ message }}</div>
+        <div class="rounded-lg bg-amber-100 px-4 py-3 text-amber-900 dark:bg-espresso/80 dark:text-amber-200">{{ message }}</div>
         {% endfor %}
     </div>
     {% endif %}
 {% endwith %}
 
 <form method="post" action="{{ url_for('feedback.feedback_form') }}" novalidate
-      class="max-w-xl space-y-4 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
+      class="max-w-xl space-y-4 rounded-lg bg-white p-6 shadow-md dark:bg-espresso/80">
     <div>
         <label for="name" class="mb-1 block font-semibold">Ім’я *</label>
         <input id="name" name="name" type="text" value="{{ form.name }}" maxlength="100"
-               class="w-full rounded border bg-white px-3 py-2 dark:bg-gray-700 {{ 'border-red-500' if errors.name else 'border-gray-300 dark:border-gray-600' }}">
+               class="w-full rounded border bg-white px-3 py-2 dark:bg-choc/60 {{ 'border-red-500' if errors.name else 'border-gray-300 dark:border-latte/20' }}">
         {% if errors.name %}<p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ errors.name }}</p>{% endif %}
     </div>
 
     <div>
         <label for="email" class="mb-1 block font-semibold">Email *</label>
         <input id="email" name="email" type="email" value="{{ form.email }}"
-               class="w-full rounded border bg-white px-3 py-2 dark:bg-gray-700 {{ 'border-red-500' if errors.email else 'border-gray-300 dark:border-gray-600' }}">
+               class="w-full rounded border bg-white px-3 py-2 dark:bg-choc/60 {{ 'border-red-500' if errors.email else 'border-gray-300 dark:border-latte/20' }}">
         {% if errors.email %}<p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ errors.email }}</p>{% endif %}
     </div>
 
     <div>
         <label for="message" class="mb-1 block font-semibold">Повідомлення *</label>
         <textarea id="message" name="message" rows="5" maxlength="2000"
-                  class="w-full rounded border bg-white px-3 py-2 dark:bg-gray-700 {{ 'border-red-500' if errors.message else 'border-gray-300 dark:border-gray-600' }}">{{ form.message }}</textarea>
+                  class="w-full rounded border bg-white px-3 py-2 dark:bg-choc/60 {{ 'border-red-500' if errors.message else 'border-gray-300 dark:border-latte/20' }}">{{ form.message }}</textarea>
         {% if errors.message %}<p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ errors.message }}</p>{% endif %}
     </div>
 

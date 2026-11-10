@@ -18,7 +18,7 @@
     {% set active = request.endpoint and request.endpoint.split('.')[0] == endpoint.split('.')[0] %}
     <a href="{{ url_for(endpoint) }}"
        class="rounded-lg px-4 py-2 transition-colors duration-300
-              {{ 'bg-amber-700 text-white' if active else 'bg-white text-amber-900 hover:bg-amber-100 dark:bg-gray-800 dark:text-amber-200 dark:hover:bg-gray-700' }}">
+              {{ 'bg-amber-700 text-white' if active else 'bg-white text-amber-900 hover:bg-amber-100 dark:bg-espresso/80 dark:text-amber-200 dark:hover:bg-choc/60' }}">
         {{ label }}
     </a>
     {% endfor %}
@@ -29,7 +29,7 @@
     {% if messages %}
     <div class="mb-6 space-y-2">
         {% for message in messages %}
-        <div class="rounded-lg bg-amber-100 px-4 py-3 text-amber-900 dark:bg-gray-800 dark:text-amber-200">{{ message }}</div>
+        <div class="rounded-lg bg-amber-100 px-4 py-3 text-amber-900 dark:bg-espresso/80 dark:text-amber-200">{{ message }}</div>
         {% endfor %}
     </div>
     {% endif %}

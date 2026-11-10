@@ -13,22 +13,22 @@
 
 <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
     <!-- Клієнт і доставка -->
-    <div class="rounded-lg bg-white p-5 shadow-md dark:bg-gray-800">
+    <div class="rounded-lg bg-white p-5 shadow-md dark:bg-espresso/80">
         <h3 class="mb-2 text-lg font-bold">Клієнт</h3>
         <p>{{ order.customer_name }}</p>
         <p>{{ order.phone }}</p>
         {% if order.email %}<p>{{ order.email }}</p>{% endif %}
         <h3 class="mb-1 mt-4 text-lg font-bold">Доставка</h3>
         <p>{{ order.address }}</p>
-        {% if order.comment %}<p class="mt-2 text-gray-600 dark:text-gray-300">Коментар: {{ order.comment }}</p>{% endif %}
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">Створено: {{ order.created_at }}</p>
+        {% if order.comment %}<p class="mt-2 text-gray-600 dark:text-latte">Коментар: {{ order.comment }}</p>{% endif %}
+        <p class="mt-2 text-sm text-gray-500 dark:text-latte/70">Створено: {{ order.created_at }}</p>
     </div>
 
     <!-- Зміна статусу: POST-форма -->
-    <div class="rounded-lg bg-white p-5 shadow-md dark:bg-gray-800 self-start">
+    <div class="rounded-lg bg-white p-5 shadow-md dark:bg-espresso/80 self-start">
         <h3 class="mb-2 text-lg font-bold">Змінити статус</h3>
         <form method="post" action="{{ url_for('orders.update_order_status', order_id=order.id) }}" class="flex flex-wrap gap-2">
-            <select name="status" class="rounded border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+            <select name="status" class="rounded border border-gray-300 bg-white px-3 py-2 dark:border-latte/20 dark:bg-choc/60">
                 {% for key, label in statuses.items() %}
                 <option value="{{ key }}" {{ 'selected' if key == order.status }}>{{ label }}</option>
                 {% endfor %}
@@ -39,7 +39,7 @@
 </div>
 
 <!-- Позиції замовлення (JOIN order_items + products) -->
-<div class="mt-6 overflow-x-auto rounded-lg bg-white shadow-md dark:bg-gray-800">
+<div class="mt-6 overflow-x-auto rounded-lg bg-white shadow-md dark:bg-espresso/80">
     <table class="w-full text-left">
         <thead class="bg-amber-700 text-white">
             <tr>
@@ -51,7 +51,7 @@
         </thead>
         <tbody>
             {% for item in order_items %}
-            <tr class="border-t border-gray-200 dark:border-gray-700">
+            <tr class="border-t border-gray-200 dark:border-latte/15">
                 <td class="p-3">{{ item.name }}</td>
                 <td class="p-3 text-right">{{ '%.2f'|format(item.price_at_order) }} грн</td>
                 <td class="p-3 text-right">{{ item.quantity }}</td>
