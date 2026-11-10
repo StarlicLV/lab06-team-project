@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block title %}Демонстрація API{% endblock %}
+
+{#
+  Лабораторна 6: клієнтська частина, що працює з REST API (/api/v1/products).
+
+  ДОМОВЛЕНОСТІ МІЖ УЧАСНИКАМИ (не змінювати id без узгодження):
+    #message    блок повідомлення; JS додає класи "show" і "success" або "error"
+    #loading    індикатор завантаження; JS перемикає клас "show"
+    #addForm    форма додавання товару (novalidate: перевірку полів робить JS)
+    #dataList   контейнер, куди JS малює картки товарів
+    Поля форми: name, price, category, description, is_available
+    Місце для помилки біля кожного поля: <p id="{поле}-error">; JS знімає клас "hidden", коли є текст
+  Скрипти підключено в такому порядку: api-demo.js (список, допоміжні функції), потім api-demo-form.js (форма).
+#}
+
+{% block content %}
+<section class="max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-2 text-amber-900 dark:text-amber-200">Демонстрація роботи API</h1>
+    <p class="mb-6 max-w-prose text-gray-700 dark:text-gray-300">
+        Список товарів завантажується з API кав'ярні (<code>GET /api/v1/products</code>) за допомогою JavaScript,
+        а нові товари додаються формою нижче (<code>POST /api/v1/products</code>) без перезавантаження сторінки.
+    </p>
+
+    <!-- Повідомлення про успіх або помилку -->
+    <div id="message" role="status" aria-live="polite" class="mb-4 rounded-lg px-4 py-3"></div>
+
+    <!-- Форма додавання товару -->
+    <form id="addForm" novalidate
+          class="mb-8 rounded-xl border border-amber-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+        <h2 class="mb-4 text-2xl font-semibold text-amber-900 dark:text-amber-200">Додати товар</h2>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+            <div>
+                <label for="name" class="mb-1 block font-medium">Назва <span class="text-red-600">*</span></label>
+                <input id="name" name="name" type="text" required maxlength="100" placeholder="Напр.: Чізкейк"
+                       class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+                <p id="name-error" class="hidden mt-1 text-sm text-red-600 dark:text-red-400"></p>
+            </div>
+
+            <div>
+                <label for="price" class="mb-1 block font-medium">Ціна, грн <span class="text-red-600">*</span></label>
+                <input id="price" name="price" type="number" required min="0" step="0.01" placeholder="95"
+                       class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+                <p id="price-error" class="hidden mt-1 text-sm text-red-600 dark:text-red-400"></p>
+            </div>
+
+            <div>
+                <label for="category" class="mb-1 block font-medium">Категорія <span class="text-red-600">*</span></label>
+                <input id="category" name="category" type="text" required maxlength="100" placeholder="Напр.: Десерти"
+                       class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-700">
+                <p id="category-error" class="hidden mt-1 text-sm text-red-600 dark:text-red-400"></p>
+            </div>
+
+            <div class="flex items-end">
+                <label for="is_available" class="flex cursor-pointer items-center gap-2 pb-2 font-medium">
+                    <input id="is_available" name="is_available" type="checkbox" checked class="h-5 w-5">
+                    Доступний для замовлення
+                </label>
+            </div>
+
+            <div class="sm:col-span-2">
+                <label for="description" class="mb-1 block font-medium">Опис</label>
+                <textarea id="description" name="description" rows="3" maxlength="1000" placeholder="Необов'язково"
+                          class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 dark:border-gray-600 dark:bg-gray-700"></textarea>
+                <p id="description-error" class="hidden mt-1 text-sm text-red-600 dark:text-red-400"></p>
+            </div>
+        </div>
+
+        <button type="submit"
+                class="mt-5 rounded-lg bg-amber-700 px-6 py-2 font-semibold text-white transition-colors duration-300 hover:bg-amber-800 dark:bg-amber-600 dark:hover:bg-amber-500">
+            Додати
+        </button>
+    </form>
+
+    <!-- Список товарів -->
+    <h2 class="mb-4 text-2xl font-semibold text-amber-900 dark:text-amber-200">Товари</h2>
+    <div id="loading" role="status">⏳ Завантаження...</div>
+    <div id="dataList" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+</section>
+
+<style>
+    /* Правила з методички: блоки приховані, поки JS не додасть клас show */
+    #loading, #message { display: none; }
+    #loading.show, #message.show { display: block; }
+    #message.success { background: #dcfce7; color: #166534; }
+    #message.error   { background: #fee2e2; color: #991b1b; }
+    .dark #message.success { background: #14532d; color: #bbf7d0; }
+    .dark #message.error   { background: #7f1d1d; color: #fecaca; }
+</style>
+
+<!-- Скрипти підключено ПІСЛЯ елементів, тому на момент запуску всі вони вже існують -->
+<script src="{{ url_for('static', filename='js/api-demo.js') }}"></script>
+<script src="{{ url_for('static', filename='js/api-demo-form.js') }}"></script>
+{% endblock %}
