@@ -1,0 +1,15 @@
+{# ТИМЧАСОВИЙ файл лише для перевірки на твоєму комп'ютері. НЕ додавай його в git! #}
+{% extends "base.html" %}
+{% block content %}
+<h1 class="text-2xl font-bold mb-4">Тест: список товарів</h1>
+<div id="message"></div>
+<div id="loading">⏳ Завантаження...</div>
+<div id="dataList"></div>
+<style>
+    #loading, #message { display: none; }
+    #loading.show, #message.show { display: block; }
+    #message.success { color: green; }
+    #message.error { color: red; }
+</style>
+<script src="{{ url_for('static', filename='js/api-demo.js') }}"></script>
+{% endblock %}
